@@ -1,3 +1,4 @@
+console.log("debug")
 let rsaver_placeid
 
 function waitForElm(selector) {

@@ -7,7 +7,7 @@ async function notification(title, message) {
 }
 
 (async () => {
-    let storageData = await chrome.storage.local.get()
+    let storageData = await browser.storage.local.get()
 
     function saveData(object) {
         chrome.storage.local.set(object)
@@ -17,7 +17,6 @@ async function notification(title, message) {
     
     $("#rsaver-save").on("click", () => {
         if ($("#rsaver-placeid").val() === "") return
-
         storageData.placeid = parseInt($("#rsaver-placeid").val())
         $("#rsaver-currect-placeid").text(storageData.placeid)
         saveData(storageData)

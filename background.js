@@ -1,3 +1,5 @@
+console.log("background init")
+
 function sendNotification(title, message) {
     chrome.notifications.create({
         type: "basic",
@@ -16,16 +18,16 @@ chrome.runtime.onMessage.addListener((res, sender, sendResponse) => {
     }
 })
 
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, { url }) => {
+browser.tabs.onUpdated.addListener((tabId, changeInfo, { url }) => {
     if (changeInfo.status !== 'complete' || !/https:\/\/.+roblox.com\//g.test(url)) return
 
-    await chrome.scripting.insertCSS({
+    browser.scripting.insertCSS({
         target: { tabId: tabId },
-        files: ["css/style.css"],
+        files: ["/css/style.css"],
     })
 
-    chrome.scripting.executeScript({
+    browser.scripting.executeScript({
         target: { tabId: tabId },
-        files: ["js/jquery.js", "load.js"],
+        files: ["/js/jquery.js", "/load.js"],
     })
 })
